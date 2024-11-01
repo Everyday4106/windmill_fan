@@ -1,0 +1,10 @@
+{
+  "domain": "windmill_fan",
+  "name": "Windmill Fan",
+  "codeowners": ["@Everyday4106"],
+  "config_flow": true,
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "requirements": ["requests", "blynklib"],
+  "version": "1.0.0"
+}
