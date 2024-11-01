@@ -20,11 +20,11 @@ class BlynkService:
             True: 1
         }
         self.speed_mapping = {
-            "Speed 1": "1",
-            "Speed 2": "2",
-            "Speed 3": "3",
-            "Speed 4": "4",
-            "Speed 5": "5",
+            "Speed 1": 1,
+            "Speed 2": 2,
+            "Speed 3": 3,
+            "Speed 4": 4,
+            "Speed 5": 5,
         }
 
     def _get_request_url(self, endpoint, params):
@@ -56,7 +56,7 @@ class BlynkService:
         return await self.hass.async_add_executor_job(fetch)
 
     async def async_set_pin_value(self, pin, value):
-        _LOGGER.debug(f"Setting pin value for pin {pin} to {value}")
+        _LOGGER.debug(f"Setting pin {pin} to {value}")
         params = {'token': self.token, pin: value}
         url = self._get_request_url(f'external/api/update', params)
         _LOGGER.debug(f"Request URL: {url}")
@@ -80,7 +80,7 @@ class BlynkService:
 
     async def async_get_power(self) -> bool:
         pin_value = await self.async_get_pin_value('V0')
-        _LOGGER.debug(f"The power pin ({pin_value}) is set to {type(pin_value)}")
+        _LOGGER.debug(f"Power is {pin_value}")
         if pin_value == 1:
             return True
         else:
@@ -88,12 +88,12 @@ class BlynkService:
 
     async def async_set_autofade(self, value):
         pin_value = self.power_mapping.get(value, "0")
-        _LOGGER.debug(f"Setting AutoFade pin to {pin_value}")
+        _LOGGER.debug(f"Setting AutoFade to {pin_value}")
         await self.async_set_pin_value('V1', pin_value)
 
     async def async_get_autofade(self) -> bool:
         pin_value = await self.async_get_pin_value('V1')
-        _LOGGER.debug(f"The Autofade pin ({pin_value}) is set to {type(pin_value)}")
+        _LOGGER.debug(f"Autofade is {pin_value}")
         if pin_value == 1:
             return True
         else:
@@ -101,21 +101,14 @@ class BlynkService:
 
     async def async_set_speed(self, value):
         pin_value = self.speed_mapping.get(value, "0")
-        _LOGGER.debug(f"Setting pin {pin_value} to speed {value}")
+        _LOGGER.debug(f"Setting speed to {pin_value}")
         await self.async_set_pin_value('V2', pin_value)
 
     async def async_get_speed(self):
         pin_value = await self.async_get_pin_value('V2')
-        speed = "Speed 1"
+        key_list = list(self.speed_mapping.keys())
+        val_list = list(self.speed_mapping.values())
+        speed = key_list[val_list.index(pin_value)]
         
-        if pin_value == 2:
-            speed = "Speed 2"
-        elif pin_value == 3:
-            speed = "Speed 3"
-        elif pin_value == 4:
-            speed = "Speed 4"
-        elif pin_value == 5:
-            speed = "Speed 5"
-
-        _LOGGER.debug(f"Pin ({pin_value}) is set to speed {speed}")
+        _LOGGER.debug(f"Pin ({pin_value}) is set to {speed}")
         return speed
