@@ -4,7 +4,7 @@ from homeassistant.core import callback
 from .const import DOMAIN, CONF_TOKEN
 
 class WindmillFanConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-
+    """Add a new fan"""
     VERSION = 1
 
     @staticmethod
@@ -13,7 +13,6 @@ class WindmillFanConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return WindmillFanOptionsFlowHandler(config_entry)
 
     async def async_step_user(self, user_input=None):
-        """Handle the initial step."""
         errors = {}
         if user_input is not None:
             return self.async_create_entry(title="Windmill Fan authority token", data=user_input)
@@ -27,7 +26,7 @@ class WindmillFanConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
 class WindmillFanOptionsFlowHandler(config_entries.OptionsFlow):
-
+    """Modify an existing fan"""
     def __init__(self, config_entry):
         self.config_entry = config_entry
 
