@@ -7,6 +7,7 @@ from .blynk_service import BlynkService
 from .coordinator import WindmillDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
+_LOGGER.setLevel(logging.DEBUG)
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     _LOGGER.debug("Setting up Windmill Fan config entry")
