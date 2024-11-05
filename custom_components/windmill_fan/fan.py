@@ -17,13 +17,13 @@ ENTITY_DESCRIPTIONS = [
         key="windmill_fan",
         name="Windmill fan",
         icon="mdi:air-conditioner",
-    ),
+    )
 ]
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
-    """Set up the Windmill Fan fan entity."""
+    """Set up the Windmill Fan entity."""
     coordinator = hass.data[DOMAIN]["coordinator"]
-
+    _LOGGER.debug("Adding entities...")
     async_add_entities(
         WindmillFan(
             coordinator=coordinator,
