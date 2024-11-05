@@ -25,9 +25,9 @@ class WindmillFan(CoordinatorEntity, FanEntity):
             manufacturer="Windmill"
         )
         self._attr_supported_features = (
-            ClimateEntityFeature.SET_SPEED |
-            ClimateEntityFeature.TURN_ON |
-            ClimateEntityFeature.TURN_OFF
+            FanEntityFeature.SET_SPEED |
+            FanEntityFeature.TURN_ON |
+            FanEntityFeature.TURN_OFF
         )
         self._is_on = False
         _LOGGER.debug(f"Setup WindmillFan entity: {self.entity_description.name}")
