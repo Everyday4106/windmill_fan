@@ -14,6 +14,7 @@ class WindmillFan(CoordinatorEntity, FanEntity):
 
     def __init__(self, coordinator, entity_description: FanEntityDescription):
         """Initialize the fan device."""
+        _LOGGER.debug("Initializing the fan device")
         super().__init__(coordinator)
         self.entity_description = entity_description
         self._attr_name = "Windmill Fan"
