@@ -5,6 +5,7 @@ from homeassistant.core import HomeAssistant
 from .const import DOMAIN, PLATFORMS, CONF_TOKEN, BASE_URL
 from .blynk_service import BlynkService
 from .coordinator import WindmillDataUpdateCoordinator
+from .fan import WindmillFan
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.DEBUG)
