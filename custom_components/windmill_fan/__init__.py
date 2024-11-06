@@ -25,8 +25,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
     # Fetch the current values for the fan
     await coordinator.async_config_entry_first_refresh()
 
-    async_add_entities(
-        WindmillFan(coordinator, idx) for idx, ent in enumerate(coordinator.data)
-    )
+    await blynk_service.async_set_power(1)
+    
+    #async_add_entities(
+    #    WindmillFan(coordinator, idx) for idx, ent in enumerate(coordinator.data)
+    #)
     
     return True
