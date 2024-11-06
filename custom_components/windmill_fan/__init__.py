@@ -23,11 +23,4 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     await coordinator.async_config_entry_first_refresh()
     
-    for platform in PLATFORMS:
-        _LOGGER.debug(f"Loading platform: {platform}")
-        _LOGGER.debug(f"for entry: {entry}")
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setups(entry, platform)
-        )
-
     return True
