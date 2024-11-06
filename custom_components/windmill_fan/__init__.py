@@ -9,7 +9,7 @@ from .coordinator import WindmillDataUpdateCoordinator
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.DEBUG)
 
-async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities) -> bool:
     _LOGGER.debug("Setting up Windmill Fan config entry")
 
     server = BASE_URL
@@ -20,7 +20,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN]["coordinator"] = coordinator
-
+    
+    # Fetch the current values for the fan
     await coordinator.async_config_entry_first_refresh()
+
+    async_add_entities(
+        WindmillFan(coordinator, idx) for idx, ent in enumerate(coordinator.data)
+    )
     
     return True
