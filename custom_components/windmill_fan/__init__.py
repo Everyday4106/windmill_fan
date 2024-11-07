@@ -9,8 +9,7 @@ from .coordinator import WindmillDataUpdateCoordinator
 _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Windmill AC from a config entry."""
-    _LOGGER.debug("Setting up Windmill AC config entry")
+    _LOGGER.debug("Setting up the Windmill fan config entry")
 
     server = BASE_URL
     token = entry.data[CONF_TOKEN]
@@ -24,7 +23,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Unload a config entry."""
+    _LOGGER.debug("Unloading the Windmill fan config entry")
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data[DOMAIN].pop("coordinator")
