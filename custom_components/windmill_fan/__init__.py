@@ -24,6 +24,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN]["coordinator"] = coordinator
     _LOGGER.debug("4")
 
+    await coordinator.async_config_entry_first_refresh()
+
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
