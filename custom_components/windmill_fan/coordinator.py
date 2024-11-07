@@ -23,6 +23,8 @@ class WindmillDataUpdateCoordinator(DataUpdateCoordinator):
         try:
             data = {
                 "power": await self.blynk_service.async_get_power(),
+                "autofade": await self.blynk_service.async_get_autofade(),
+                "speed": await self.blynk_service.async_get_speed()
             }
             _LOGGER.debug(f"Data fetched from Windmill: {data}")
             return data
