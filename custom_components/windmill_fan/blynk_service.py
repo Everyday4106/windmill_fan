@@ -92,4 +92,4 @@ class BlynkService:
     async def async_get_speed(self):
         pin_value = await self.async_get_pin_value('V2')
         # getting the Key from the Value in a single line
-       return list(self.speed_mapping.keys())[list(self.speed_mapping.values()).index(pin_value)])
+        return list(self.speed_mapping.keys())[list(self.speed_mapping.values()).index(pin_value)])
