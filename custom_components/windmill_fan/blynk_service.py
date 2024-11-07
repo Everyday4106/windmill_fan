@@ -12,8 +12,8 @@ class BlynkService:
         self.token = token
         # Mapping of string values to pin values
         self.power_mapping = {
-            False: 0,
-            True: 1
+            "Off": 0,
+            "On": 1
         }
 
     def _get_request_url(self, endpoint, params):
@@ -71,10 +71,7 @@ class BlynkService:
         _LOGGER.debug(f"Setting Power: {pin_value}")
         await self.async_set_pin_value('V0', pin_value)
 
-    async def async_get_power(self) -> bool:
+    async def async_get_power(self):
         pin_value = await self.async_get_pin_value('V0')
-        _LOGGER.debug(f"Pin value received for power: {pin_value} (type: {type(pin_value)})")
-        if pin_value == 1:
-            return True
-        else:
-            return False
+        _LOGGER.debug(f"Pin value received for power: {pin_value}")
+        return list(self.power_mapping.keys())[list(self.power_mapping.values()).index(pin_value)])
