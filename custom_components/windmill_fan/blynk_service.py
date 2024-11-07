@@ -21,8 +21,8 @@ class BlynkService:
         return f"{self.server}/{endpoint}?{query}"
 
     def _get_key_from_value(dict, val):
-        key = {i for i in self.power_mapping if self.power_mapping[i]==val}.pop()
         _LOGGER.debug("howdy")
+        key = {i for i in dict if dict[i]==val}.pop()
         _LOGGER.debug(key)
         _LOGGER.debug(type(key))
         return 1
