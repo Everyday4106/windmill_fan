@@ -15,6 +15,17 @@ class BlynkService:
             "Off": 0,
             "On": 1
         }
+        self.autofade_mapping = {
+            "Disabled": 0,
+            "Enabled": 1
+        }
+        self.speed_mapping = {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+        }
 
     def _get_request_url(self, endpoint, params):
         query = urlencode(params)
@@ -66,16 +77,34 @@ class BlynkService:
         return await self.hass.async_add_executor_job(fetch)
 
     async def async_set_power(self, value):
-        pin_value = self.power_mapping.get(value, "0")
+        pin_value = self.power_mapping.get(value)
         await self.async_set_pin_value('V0', pin_value)
 
     async def async_get_power(self):
         pin_value = await self.async_get_pin_value('V0')
         _LOGGER.debug(f"Pin value received for power: {pin_value}")
         key = {i for i in self.power_mapping if self.power_mapping[i]==pin_value}.pop()
-        _LOGGER.debug(key)
+        _LOGGER.debug(f"Power is {key}")
         return key
-        #if pin_value == 1:
-        #    return "On"
-        #else:
-        #    return "Off"
+
+    async def async_set_autofade(self, value):
+        pin_value = self.autofade_mapping.get(value)
+        await self.async_set_pin_value('V1', pin_value)
+
+    async def async_get_autofade(self):
+        pin_value = await self.async_get_pin_value('V1')
+        _LOGGER.debug(f"Pin value received for autofade: {pin_value}")
+        key = {i for i in self.autofade_mapping if self.autofade_mapping[i]==pin_value}.pop()
+        _LOGGER.debug(f"Autofade is {key}")
+        return key
+
+    async def async_set_speed(self, value):
+        pin_value = self.speed_mapping.get(value)
+        await self.async_set_pin_value('V2', pin_value)
+
+    async def async_get_speed(self):
+        pin_value = await self.async_get_pin_value('V2')
+        _LOGGER.debug(f"Pin value received for speed: {pin_value}")
+        key = {i for i in self.speed_mapping if self.speed_mapping[i]==pin_value}.pop()
+        _LOGGER.debug(f"Speed is {key}")
+        return key
