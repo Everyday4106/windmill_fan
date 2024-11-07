@@ -74,8 +74,8 @@ class BlynkService:
         _LOGGER.debug(f"Pin value received for power: {pin_value}")
         key = {i for i in self.power_mapping if self.power_mapping[i]==pin_value}.pop()
         _LOGGER.debug(key)
-        
-        if pin_value == 1:
-            return "On"
-        else:
-            return "Off"
+        return key
+        #if pin_value == 1:
+        #    return "On"
+        #else:
+        #    return "Off"
