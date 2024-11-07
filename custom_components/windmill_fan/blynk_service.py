@@ -72,8 +72,8 @@ class BlynkService:
     async def async_get_power(self):
         pin_value = await self.async_get_pin_value('V0')
         _LOGGER.debug(f"Pin value received for power: {pin_value}")
-        return list(self.power_mapping.keys())[list(self.power_mapping.values()).index(pin_value)])
-        #if pin_value == 1:
-         #   return "On"
-        #else:
-         #   return "Off"
+        _LOGGER.debug(list(self.power_mapping.keys())[list(self.power_mapping.values()).index(pin_value)]))
+        if pin_value == 1:
+            return "On"
+        else:
+            return "Off"
