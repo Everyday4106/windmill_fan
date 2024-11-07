@@ -20,13 +20,6 @@ class BlynkService:
         query = urlencode(params)
         return f"{self.server}/{endpoint}?{query}"
 
-    def _get_key_from_value(dict, val):
-        _LOGGER.debug("howdy")
-        key = {i for i in dict if dict[i]==val}.pop()
-        _LOGGER.debug(key)
-        _LOGGER.debug(type(key))
-        return 1
-
     async def async_get_pin_value(self, pin):
         _LOGGER.debug(f"Getting pin value for pin {pin}")
         params = {'token': self.token}
@@ -81,7 +74,8 @@ class BlynkService:
         _LOGGER.debug(f"Pin value received for power: {pin_value}")
         _LOGGER.debug(self.power_mapping.keys())
         _LOGGER.debug(self.power_mapping.values())
-        key = self._get_key_from_value(self.power_mapping, pin_value)
+        key = {i for i in dict if dict[i]==val}.pop()
+        _LOGGER.debug(key)
         
         if pin_value == 1:
             return "On"
