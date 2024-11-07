@@ -100,3 +100,9 @@ class BlynkService:
         pin_value = await self.async_get_pin_value('V2')
         _LOGGER.debug(f"Reported Speed: {pin_value}")
         return return_key_from_value(self.speed_mapping, pin_value)
+
+    async def async_get_mode(self):
+        return 1
+    
+    async def async_get_fan(self):
+        return 1
