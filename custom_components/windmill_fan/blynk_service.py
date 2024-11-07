@@ -66,15 +66,13 @@ class BlynkService:
         return await self.hass.async_add_executor_job(fetch)
 
     async def async_set_power(self, value):
-        _LOGGER.debug(f"Setting Raw Power: {value}")
         pin_value = self.power_mapping.get(value, "0")
-        _LOGGER.debug(f"Setting Power: {pin_value}")
         await self.async_set_pin_value('V0', pin_value)
 
-    async def async_get_power(self) -> bool:
+    async def async_get_power(self):
         pin_value = await self.async_get_pin_value('V0')
-        _LOGGER.debug(f"Pin value received for power: {pin_value} (type: {type(pin_value)})")
+        _LOGGER.debug(f"Pin value received for power: {pin_value}")
         if pin_value == 1:
-            return True
+            return "On"
         else:
-            return False
+            return "Off"
