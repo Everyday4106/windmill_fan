@@ -26,10 +26,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN]["coordinator"] = coordinator
 
     # use the API to pull down the current values for the given Auth Token
-    current_values = await coordinator.async_config_entry_first_refresh()
+    await coordinator.async_config_entry_first_refresh()
 
     # get a reference to the custom Windmill fan entity and initialize it with the values from the API
-    fan_entity = WindmillFan(current_values)
+    fan_entity = WindmillFan(coordinator.data)
     
     # add the Windmill Fan entity to Home Assistant
     #add_entities([MyEntity()], update_before_add=True)
