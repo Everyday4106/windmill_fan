@@ -12,20 +12,14 @@ class BlynkService:
         self.token = token
         # Mapping of string values to pin values
         self.power_mapping = {
-            "Off": 0,
-            "On": 1
+            False: 0,
+            True: 1
         }
         self.autofade_mapping = {
-            "Disabled": 0,
-            "Enabled": 1
+            False: 0,
+            True: 1
         }
-        self.speed_mapping = {
-            "1": 1,
-            "2": 2,
-            "3": 3,
-            "4": 4,
-            "5": 5,
-        }
+        #speed is a number value: 1, 2, 3, 4, 5
 
     def _get_request_url(self, endpoint, params):
         query = urlencode(params)
@@ -86,10 +80,8 @@ class BlynkService:
         return key
 
     async def async_set_speed(self, value):
-        pin_value = self.speed_mapping.get(value)
-        await self.async_set_pin_value('V2', pin_value)
+        await self.async_set_pin_value('V2', value)
 
     async def async_get_speed(self):
         pin_value = await self.async_get_pin_value('V2')
-        key = {i for i in self.speed_mapping if self.speed_mapping[i]==pin_value}.pop()
-        return key
+        return pin_value
