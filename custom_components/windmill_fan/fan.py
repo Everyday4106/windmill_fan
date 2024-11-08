@@ -17,7 +17,7 @@ class WindmillFan(CoordinatorEntity, FanEntity):
     """Representation of a Windmill Fan"""
     
     def __init__(self, coordinator, entity_description: FanEntityDescription):
-        """Initialize the climate device."""
+        """Initialize the fan device."""
         super().__init__(coordinator)
         self.entity_description = entity_description
         self._attr_name = "Windmill Fan"
@@ -28,9 +28,12 @@ class WindmillFan(CoordinatorEntity, FanEntity):
             manufacturer="Windmill"
         )
         self._attr_supported_features = (
-            ClimateEntityFeature.SET_SPEED |
-            ClimateEntityFeature.TURN_ON |
-            ClimateEntityFeature.TURN_OFF
+            FanEntityFeature.SET_SPEED |
+            FanEntityFeature.TURN_ON |
+            FanEntityFeature.TURN_OFF
         )
         self._is_on = False
+        self._autofade = True
+        self._speed = 1
         _LOGGER.debug(f"Setup WindmillFan entity: {self.entity_description.name}")
+        _LOGGER.debug(coordinator.data)
