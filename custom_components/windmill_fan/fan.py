@@ -31,17 +31,19 @@ class WindmillFan(FanEntity):
             name= "Windmill Fan",
             manufacturer="Windmill"
         )
-        _LOGGER.debug("yo2")
         self._attr_supported_features = (
             FanEntityFeature.SET_SPEED |
             FanEntityFeature.TURN_ON |
             FanEntityFeature.TURN_OFF
         )
-        _LOGGER.debug("yo3")
         self._is_on = False
-        #self._speed_count = 5
-        #self._autofade = True
-        #self._speed = 1
+        self._speed_count = 5
+        self._autofade = False
+        self._speed = 1
+        # update values based on the Coordinator
+        _LOGGER.debug(coordinator.data["power"])
+        _LOGGER.debug(coordinator.data["autofade"])
+        _LOGGER.debug(coordinator.data["speed"])
         #percentage	int | None	0	The current speed percentage. Must be a value between 0 (off) and 100.
         #_LOGGER.debug(f"Setup WindmillFan entity: {self.entity_description.name}")
         
