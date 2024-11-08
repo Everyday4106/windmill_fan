@@ -1,5 +1,5 @@
 import logging
-from homeassistant.components.fan import FanEntity, FanEntityDescription
+from homeassistant.components.fan import FanEntity, FanEntityFeature
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -16,13 +16,12 @@ _LOGGER = logging.getLogger(__name__)
 class WindmillFan(CoordinatorEntity, FanEntity):
     """Representation of a Windmill Fan"""
     
-    def __init__(self, coordinator, entity_description: FanEntityDescription):
+    def __init__(self, coordinator):
         """Initialize the fan device."""
         _LOGGER.debug("yo")
         super().__init__(coordinator)
-        self.entity_description = entity_description
         self._attr_name = "Windmill Fan"
-        self._attr_unique_id = f"{DOMAIN}_{entity_description.key}"
+        #self._attr_unique_id = f"{DOMAIN}_{entity_description.key}"
         self._attr_device_info = DeviceInfo(
             identifiers={(DOMAIN, self.unique_id)},
             name= "Windmill Fan",
@@ -34,7 +33,16 @@ class WindmillFan(CoordinatorEntity, FanEntity):
             FanEntityFeature.TURN_OFF
         )
         self._is_on = False
-        self._autofade = True
-        self._speed = 1
-        _LOGGER.debug(f"Setup WindmillFan entity: {self.entity_description.name}")
+        #self._speed_count = 5
+        #self._autofade = True
+        #self._speed = 1
+        #percentage	int | None	0	The current speed percentage. Must be a value between 0 (off) and 100.
+        #_LOGGER.debug(f"Setup WindmillFan entity: {self.entity_description.name}")
         _LOGGER.debug(coordinator.data)
+
+
+
+
+
+
+
