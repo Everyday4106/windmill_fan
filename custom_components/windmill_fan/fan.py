@@ -19,7 +19,7 @@ class WindmillFan(FanEntity):
     def __init__(self, coordinator):
         """Initialize the fan device."""
         _LOGGER.debug("yo")
-        _LOGGER.debug(coordinator)
+        _LOGGER.debug(coordinator.data)
         self._attr_name = "Windmill Fan"
 
         #homeassistant.helpers.device_registry.format_mac
