@@ -9,4 +9,5 @@ VERSION = "1.0.0"
 PLATFORMS = ["fan"]
 UPDATE_INTERVAL = 60
 CONF_TOKEN = "token"
+CONF_TITLE = "Windmill fan auth token"
 BASE_URL = "https://dashboard.windmillair.com"
