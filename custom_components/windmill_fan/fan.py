@@ -5,3 +5,4 @@ class WindmillFan(FanEntity):
 
     def __init__(self):
         self._is_on = False
+        #test
