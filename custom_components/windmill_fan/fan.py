@@ -21,7 +21,7 @@ class WindmillFan(FanEntity):
         _LOGGER.debug("yo")
         _LOGGER.debug(coordinator.data)
         self._attr_name = "Windmill Fan"
-
+        #this shit fucking sucks
         #homeassistant.helpers.device_registry.format_mac
         #find the MAC via a "discovery handler"
         #self._attr_unique_id = "123456"
