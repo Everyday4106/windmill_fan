@@ -26,7 +26,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # use the API to pull down the current values for the given Auth Token
     await coordinator.async_config_entry_first_refresh()
-
+    #again with this shit?
     # get a reference to the custom Windmill fan entity and initialize it with the values from the API
     #fan_entity = WindmillFan(coordinator)
     
