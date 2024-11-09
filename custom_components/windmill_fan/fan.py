@@ -13,9 +13,14 @@ from .coordinator import WindmillDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
-class WindmillFan(FanEntity):
+class WindmillFan(CoordinatorEntity, FanEntity):
     """Representation of a Windmill Fan"""
     
+    def __init__(self, coordinator, idx):
+        """Pass coordinator to CoordinatorEntity."""
+        super().__init__(coordinator, context=idx)
+        self.idx = idx
+"""
     def __init__(self, coordinator):
         """Initialize the fan device."""
         _LOGGER.debug("yo")
@@ -50,11 +55,4 @@ class WindmillFan(FanEntity):
         
         #percentage	int | None	0	The current speed percentage. Must be a value between 0 (off) and 100.
         #_LOGGER.debug(f"Setup WindmillFan entity: {self.entity_description.name}")
-        
-
-
-
-
-
-
-
+"""
