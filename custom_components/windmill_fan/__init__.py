@@ -32,7 +32,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     fan_entity = WindmillFan(coordinator)
     
     # add the Windmill Fan entity to Home Assistant
-    await hass.async_add_entities([fan_entity], update_before_add=True)
+    async_add_entities(fan_entity)
 
     return True
 
