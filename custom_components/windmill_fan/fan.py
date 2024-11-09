@@ -1,11 +1,7 @@
-import logging
+from homeassistant.components.fan import FanEntity
 
-_LOGGER = logging.getLogger(__name__)
+class WindmillFan(FanEntity):
+    _attr_has_entity_name = True
 
-class WindmillFan():
-    """Representation of a Windmill Fan"""
-  
-      def __init__(self):
-        """Initialize the fan device."""
-        _LOGGER.debug("yo")
-        
+    def __init__(self):
+        self._is_on = False
