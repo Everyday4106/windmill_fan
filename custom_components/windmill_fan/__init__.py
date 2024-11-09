@@ -30,7 +30,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     
     # get a reference to the custom Windmill fan entity and initialize it with the values from the API
     #fan_entity = WindmillFan(coordinator)
-    #le sigh
+    
     # add the Windmill Fan entity to Home Assistant
     #async_add_entities(
     #    WindmillFan(coordinator, idx) for idx, ent in enumerate(coordinator.data)
