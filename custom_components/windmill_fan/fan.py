@@ -20,7 +20,3 @@ class WindmillFan(FanEntity):
         """Initialize the fan device."""
         _LOGGER.debug("yo")
         
-        self._is_on = coordinator.data["power"]
-        self._autofade = coordinator.data["autofade"]
-        self._speed = coordinator.data["speed"]
-        _LOGGER.debug(self._is_on || self._autofade || self._speed)
