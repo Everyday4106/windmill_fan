@@ -10,3 +10,4 @@ class WindmillFan(FanEntity):
         _LOGGER.debug("yo")
         self._is_on = False
         _LOGGER.debug(coordinator.data)
+        #fuck you
