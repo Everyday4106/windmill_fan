@@ -24,13 +24,13 @@ class WindmillFan(CoordinatorEntity):
 
         #homeassistant.helpers.device_registry.format_mac
         #find the MAC via a "discovery handler"
-        self._attr_unique_id = "123456"
+        #self._attr_unique_id = "123456"
         #self._attr_unique_id = f"{DOMAIN}_{entity_description.key}"
-        self._attr_device_info = DeviceInfo(
-            identifiers={(DOMAIN, self.unique_id)},
-            name= "Windmill Fan",
-            manufacturer="Windmill"
-        )
+        #self._attr_device_info = DeviceInfo(
+        #    identifiers={(DOMAIN, self.unique_id)},
+        #    name= "Windmill Fan",
+        #    manufacturer="Windmill"
+        #)
         self._attr_supported_features = (
             FanEntityFeature.SET_SPEED |
             FanEntityFeature.TURN_ON |
