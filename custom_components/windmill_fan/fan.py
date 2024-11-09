@@ -13,7 +13,7 @@ from .coordinator import WindmillDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
-class WindmillFan(CoordinatorEntity, FanEntity):
+class WindmillFan(CoordinatorEntity):
     """Representation of a Windmill Fan"""
     
     def __init__(self, coordinator):
