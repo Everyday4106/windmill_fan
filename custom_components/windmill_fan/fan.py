@@ -11,13 +11,9 @@ class WindmillFan(FanEntity):
         #super().__init__(coordinator)
         self._is_on = False
         #self.coordinator = coordinator
-        _LOGGER.debug(coordinator.data)
-
-    @property
-    def name
-        return 'Windmill Fan'
+        #_LOGGER.debug(coordinator.data)
 
     @property
     def is_on(self):
+        """If the switch is currently on or off."""
         return self._is_on
-        #return self.coordinator.data.get("power")
