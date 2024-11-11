@@ -12,6 +12,7 @@ class WindmillFan(FanEntity):
         self._is_on = False
         #self.coordinator = coordinator
         #_LOGGER.debug(coordinator.data)
+    #bleh
 
     @property
     def is_on(self):
