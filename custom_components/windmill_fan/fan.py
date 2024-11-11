@@ -8,8 +8,9 @@ class WindmillFan(FanEntity):
 
     def __init__(self, coordinator):
         _LOGGER.debug("yo")
-        super().__init__(coordinator)
+        #super().__init__(coordinator)
         self._is_on = False
+        self.coordinator = coordinator
         _LOGGER.debug(coordinator.data)
 
     @property
