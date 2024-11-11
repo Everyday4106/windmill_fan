@@ -10,7 +10,7 @@ class WindmillFan(FanEntity):
         _LOGGER.debug("yo")
         #super().__init__(coordinator)
         self._is_on = False
-        self.coordinator = coordinator
+        #self.coordinator = coordinator
         _LOGGER.debug(coordinator.data)
 
     @property
@@ -19,4 +19,5 @@ class WindmillFan(FanEntity):
 
     @property
     def is_on(self):
-        return self.coordinator.data.get("power")
+        return self._is_on
+        #return self.coordinator.data.get("power")
