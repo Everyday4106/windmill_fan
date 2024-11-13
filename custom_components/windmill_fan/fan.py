@@ -12,7 +12,7 @@ class WindmillFan(FanEntity):
         self._is_on = False
         #self.coordinator = coordinator
         #_LOGGER.debug(coordinator.data)
-
+#the fuck?
     @property
     def is_on(self):
         """If the switch is currently on or off."""
