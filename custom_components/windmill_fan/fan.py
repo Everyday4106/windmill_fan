@@ -1,9 +1,10 @@
 import logging
 from homeassistant.components.fan import FanEntity
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 _LOGGER = logging.getLogger(__name__)
 
-class WindmillFan(FanEntity):
+class WindmillFan(CoordinatorEntity, FanEntity):
     _attr_has_entity_name = True
 
     def __init__(self, coordinator):
