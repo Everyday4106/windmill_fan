@@ -1,15 +1,16 @@
 import logging
+
 from homeassistant.components.fan import FanEntityDescription
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
 from .const import DOMAIN
 from .coordinator import WindmillDataUpdateCoordinator
 from .entity import WindmillFan
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.DEBUG)
-
 
 ENTITY_DESCRIPTIONS = [
     FanEntityDescription(
@@ -22,9 +23,9 @@ ENTITY_DESCRIPTIONS = [
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback) -> None:
     """Set up the Windmill Fan fan entity."""
     coordinator = hass.data[DOMAIN]["coordinator"]
-
+    _LOGGER.debug("here we go adding the fan entity")
     async_add_entities(
-        WindmillClimate(
+        WindmillFan(
             coordinator=coordinator,
             entity_description=entity_description,
         )
