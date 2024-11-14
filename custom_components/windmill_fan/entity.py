@@ -1,4 +1,5 @@
 import logging
+
 from homeassistant.components.fan import FanEntity, FanEntityDescription
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.entity import DeviceInfo
@@ -7,7 +8,6 @@ from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.DEBUG)
-
 
 class WindmillFan(CoordinatorEntity, FanEntity):
     """Representation of a Windmill Fan device."""
