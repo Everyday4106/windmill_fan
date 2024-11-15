@@ -19,7 +19,13 @@ class BlynkService:
             False: 0,
             True: 1
         }
-        #speed is a number value: 1, 2, 3, 4, 5
+        self.speed_mapping = [
+            "Whisper": 1,
+            "Low": 2,
+            "Medium": 3,
+            "High": 4,
+            "Boost": 5
+        ]
 
     def _get_request_url(self, endpoint, params):
         query = urlencode(params)
@@ -80,8 +86,10 @@ class BlynkService:
         return key
 
     async def async_set_speed(self, value):
-        await self.async_set_pin_value('V2', value)
+        pin_value = self.speed_mapping.get(value)
+        await self.async_set_pin_value('V2', pin_value)
 
     async def async_get_speed(self):
         pin_value = await self.async_get_pin_value('V2')
-        return pin_value
+        key = {i for i in self.speed_mapping if self.speed_mapping[i]==pin_value}.pop()
+        return key
