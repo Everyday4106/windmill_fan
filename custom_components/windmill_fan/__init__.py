@@ -38,7 +38,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     #add_devices([WindmillFan(coordinator)])
     # add the Windmill Fan entity to Home Assistant
     #await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-
+#burn in hell
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
