@@ -1,11 +1,15 @@
 import logging
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant
 
-from .const import DOMAIN, PLATFORMS, CONF_TOKEN, BASE_URL
+from homeassistant.core import HomeAssistant
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import Platform
+
+from .const import DOMAIN, CONF_TOKEN, BASE_URL
 from .blynk_service import BlynkService
 from .coordinator import WindmillDataUpdateCoordinator
 from .fan import WindmillFan
+
+PLATFORMS: list[Platform] = [Platform.FAN]
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -33,12 +37,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     #add_devices([WindmillFan(coordinator)])
     # add the Windmill Fan entity to Home Assistant
-    for platform in PLATFORMS:
-        _LOGGER.debug(f"Loading platform: {platform}")
-        _LOGGER.debug(f"Loading entry: {entry}")
-        hass.async_create_task(
-          hass.config_entries.async_forward_entry_setup(entry, platform)
-        )
+    await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     return True
 
