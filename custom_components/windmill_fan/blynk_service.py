@@ -19,13 +19,13 @@ class BlynkService:
             False: 0,
             True: 1
         }
-        self.speed_mapping = [
+        self.speed_mapping = {
             "Whisper": 1,
             "Low": 2,
             "Medium": 3,
             "High": 4,
             "Boost": 5
-        ]
+        }
 
     def _get_request_url(self, endpoint, params):
         query = urlencode(params)
